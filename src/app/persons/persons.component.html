@@ -1,0 +1,65 @@
+<script>
+
+function setPhoneMask(){
+  $('#phone').mask('(000)0000-0000');
+  return 'PHONE';
+}
+
+</script>
+
+<div class="container" style="margin-top:30px;">
+  <h1>Directory</h1><!--[dtOptions]="dtOptions" -->
+  <table datatable class="table row-border hover" id="personsTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Address</th>
+        <th>Mail</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="persons?.length != 0">
+      <tr *ngFor="let person of persons">
+          <td>{{ person.id }}</td>
+          <td>{{ person.firstName }}</td>
+          <td>{{ person.lastName }}</td>
+          <td>{{ person.address }}</td>
+          <td>{{ person.mail }}</td>
+          <td>{{ person.phone }}</td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="persons?.length == 0">
+        <tr>
+          <td colspan="6" class="no-data-available">No data found</td>
+        </tr>
+      <tbody>
+  </table>
+</div>
+<div class="container">
+    <h1>Add a person</h1>
+    <form #personsForm="ngForm">
+      <div class="form-group">
+        <label for="firstName">First name</label>
+        <input type="text" name="firstName" class="form-control" id="firstName" required [(ngModel)]="model.firstName">
+      </div>
+      <div class="form-group">
+          <label for="lastName">Last name</label>
+          <input type="text" name="lastName" class="form-control" id="lastName" required [(ngModel)]="model.lastName">
+      </div>
+      <div class="form-group">
+          <label for="address">Address</label>
+          <input type="text" name="address" class="form-control" id="address" required [(ngModel)]="model.address">
+      </div>
+      <div class="form-group">
+          <label for="mail">Mail</label>
+          <input type="email" name="mail" class="form-control" id="mail" required [(ngModel)]="model.mail">
+      </div>
+      <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="text" name="phone" class="form-control phone" id="phone" required [(ngModel)]="model.phone">
+      </div>
+      <button type="button" class="btn btn-success" (click) = "checkAddPerson()">Submit</button>
+    </form>
+</div>
