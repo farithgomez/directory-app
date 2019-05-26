@@ -11,7 +11,7 @@ import { PersonsComponent } from './persons/persons.component';
 @NgModule({
   declarations: [
     AppComponent,
-    PersonsComponent
+    PersonsComponent,
   ],
   imports: [
     BrowserModule,
