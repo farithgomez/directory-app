@@ -6,6 +6,13 @@ function setPhoneMask(){
 
 </script>
 
+<style>
+  .field-val{
+    display:none;
+    color: red;
+  }
+</style>
+
 <div class="container" style="margin-top:30px;">
   <h1>Directory</h1><!--[dtOptions]="dtOptions" -->
   <form #searchForm="ngForm">
@@ -23,7 +30,7 @@ function setPhoneMask(){
 </form>
   <div class="row" id="searchTable" style="margin-top:20px;">
     <div class="col-sm-12">
-        <table datatable class="table row-border hover" id="personsTable">
+        <table datatable [dtOptions]="dtOptions" class="table row-border hover" id="personsTable">
             <thead>
               <tr>
                 <th>ID</th>
@@ -59,22 +66,31 @@ function setPhoneMask(){
       <div class="form-group">
         <label for="firstName">First name</label>
         <input type="text" name="firstName" class="form-control" id="firstName" required [(ngModel)]="model.firstName">
+        <span id="valFirstName" class="field-val">First name is required</span>
+        <span id="formatFirstName" class="field-val">First name can't have numbers</span>
       </div>
       <div class="form-group">
           <label for="lastName">Last name</label>
           <input type="text" name="lastName" class="form-control" id="lastName" required [(ngModel)]="model.lastName">
+          <span id="valLastName" class="field-val">Last name is required</span>
+          <span id="formatLastName" class="field-val">Last name can't have numbers</span>
       </div>
       <div class="form-group">
           <label for="address">Address</label>
           <input type="text" name="address" class="form-control" id="address" required [(ngModel)]="model.address">
+          <span id="valAddress" class="field-val">Address is required</span>
       </div>
       <div class="form-group">
           <label for="mail">Mail</label>
           <input type="email" name="mail" class="form-control" id="mail" required [(ngModel)]="model.mail">
+          <span id="valMail" class="field-val">Mail is required</span>
+          <span id="formatMail" class="field-val">Text in email form is required</span>
       </div>
       <div class="form-group">
           <label for="phone">Phone</label>
-          <input type="text" name="phone" class="form-control phone" id="phone" required [(ngModel)]="model.phone">
+          <input type="text" name="phone" class="form-control phone" id="phone" maxlength = "10" required [(ngModel)]="model.phone">
+          <span id="valPhone" class="field-val">Phone is required</span>
+          <span id="formatPhone" class="field-val">Phone must be only numeric</span>
       </div>
       <button type="button" class="btn btn-success" (click) = "checkAddPerson()">Submit</button>
     </form>
